@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  description: MyText
+  user_id: 
+  range_id: 1
+  range_type: MyString
+
+two:
+  description: MyText
+  user_id: 
+  range_id: 1
+  range_type: MyString
