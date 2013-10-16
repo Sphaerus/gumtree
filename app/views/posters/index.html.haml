@@ -1,0 +1,12 @@
+%h1	Ogłoszenia
+
+%table
+	%th "Publishing Date"
+	%th "Description"
+	%th 
+	
+	- @posters.each do |poster|
+		%tr
+			%td= poster.title
+			%td= poster.description
+			%td= link_to "Delete", poster_path(poster), method: :delete

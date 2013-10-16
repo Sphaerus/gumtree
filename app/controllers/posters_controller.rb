@@ -1,11 +1,11 @@
 class PostersController < ApplicationController
+  before_action :set_poster, only: [:show, :destroy]
   
   def index
     @posters = Poster.all
   end  
   
   def show
-    @poster = Poster.find(params[:id])
   end  
   
   def new
@@ -22,5 +22,20 @@ class PostersController < ApplicationController
         format.html { render new }
       end 
     end     
-  end    
+  end
+  
+  def destroy
+    @poster.delete
+    redirect_to posters_path
+  end      
+  
+  private
+  
+  def poster_params
+    params.require(:poster).permit(:description, :title)
+  end  
+  
+  def set_poster
+    @poster = Poster.find(params[:id])
+  end  
 end  
