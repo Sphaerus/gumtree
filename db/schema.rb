@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131014134343) do
+ActiveRecord::Schema.define(version: 20131016110906) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,13 +27,20 @@ ActiveRecord::Schema.define(version: 20131014134343) do
     t.string   "range_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
   end
 
   add_index "posters", ["user_id"], name: "index_posters_on_user_id", using: :btree
 
+  create_table "posts", force: true do |t|
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "states", force: true do |t|
-    t.string   "name"
     t.integer  "country_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,8 +48,8 @@ ActiveRecord::Schema.define(version: 20131014134343) do
   add_index "states", ["country_id"], name: "index_states_on_country_id", using: :btree
 
   create_table "towns", force: true do |t|
-    t.string   "name"
     t.integer  "state_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
