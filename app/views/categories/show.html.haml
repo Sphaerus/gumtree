@@ -1,0 +1,4 @@
+%h1= "Category: #{@category.name}"
+
+- @category.subcategories.each do |subcategory|
+	%li= subcategory.name

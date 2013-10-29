@@ -1,0 +1,11 @@
+%h1 Categories
+
+%table
+	%th Name
+	%th
+	
+	- @categories.each do |category|
+		%tr
+			%td= link_to category.name, category_path(category)
+			%td= link_to "Delete", category_path(category), method: :delete
+			%td= link_to "Edit", edit_category_path(category)
