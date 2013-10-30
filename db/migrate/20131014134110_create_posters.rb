@@ -4,6 +4,9 @@ class CreatePosters < ActiveRecord::Migration
       t.text :description
       t.references :user, index: true
       t.integer :range_id
+      t.string :range_type
+      t.integer :kind_id
+      t.string :kind_type
 
       t.timestamps
     end

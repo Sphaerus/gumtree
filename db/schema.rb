@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20131028193407) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
-    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,18 +30,14 @@ ActiveRecord::Schema.define(version: 20131028193407) do
     t.integer  "user_id"
     t.integer  "range_id"
     t.string   "range_type"
+    t.integer  "kind_id"
+    t.string   "kind_type"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
   end
 
   add_index "posters", ["user_id"], name: "index_posters_on_user_id", using: :btree
-
-  create_table "posts", force: true do |t|
-    t.string   "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "states", force: true do |t|
     t.integer  "country_id"
