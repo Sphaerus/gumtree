@@ -1,4 +1,6 @@
 = simple_form_for @poster do |f|
-	= f.input :description
 	= f.input :title
+	= f.input :description
+	= f.input :kind_id, collection: Category.with_subcategories.map { |cat| [cat.name, cat.id, {type: cat.class, role: "kind"}] }, prompt: "Choose category"
+	= f.input :kind_type, as: :hidden, input_html: { data: { role: "kind_type" } }
 	= f.submit
