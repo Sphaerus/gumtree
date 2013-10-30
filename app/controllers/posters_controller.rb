@@ -1,5 +1,5 @@
 class PostersController < ApplicationController
-  before_action :set_poster, only: [:show, :destroy]
+  before_action :set_poster, only: [:show, :destroy, :edit, :update]
   
   def index
     @posters = Poster.all
@@ -23,6 +23,20 @@ class PostersController < ApplicationController
       end 
     end     
   end
+  
+  def edit
+  end  
+  
+  def update
+    
+    respond_to do |format|
+      if @poster.update_attributes(poster_params)
+        format.html { redirect_to @poster }
+      else
+        format.html { render action: "new" }
+      end 
+    end 
+  end  
   
   def destroy
     @poster.delete
