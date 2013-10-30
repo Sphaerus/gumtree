@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
       if @category_form.save
         format.html { redirect_to @category }
       else
-        format.html { render new }
+        format.html { render action: "new" }
       end 
     end     
   end

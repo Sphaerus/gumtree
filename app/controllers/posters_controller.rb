@@ -19,7 +19,7 @@ class PostersController < ApplicationController
       if @poster.save
         format.html { redirect_to @poster }
       else
-        format.html { render new }
+        format.html { render action: "new" }
       end 
     end     
   end
@@ -32,7 +32,7 @@ class PostersController < ApplicationController
   private
   
   def poster_params
-    params.require(:poster).permit(:description, :title)
+    params.require(:poster).permit(:description, :title, :kind_id, :kind_type)
   end  
   
   def set_poster
