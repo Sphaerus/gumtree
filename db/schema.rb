@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030152737) do
+ActiveRecord::Schema.define(version: 20131102095650) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "category_id"
   end
+
+  add_index "categories", ["category_id"], name: "index_categories_on_category_id", using: :btree
 
   create_table "countries", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "fields", force: true do |t|
+    t.string   "kind"
+    t.integer  "category_id"
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,8 +41,7 @@ ActiveRecord::Schema.define(version: 20131030152737) do
     t.integer  "user_id"
     t.integer  "range_id"
     t.string   "range_type"
-    t.integer  "kind_id"
-    t.string   "kind_type"
+    t.integer  "category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
@@ -47,15 +57,6 @@ ActiveRecord::Schema.define(version: 20131030152737) do
   end
 
   add_index "states", ["country_id"], name: "index_states_on_country_id", using: :btree
-
-  create_table "subcategories", force: true do |t|
-    t.string   "name"
-    t.integer  "category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id", using: :btree
 
   create_table "towns", force: true do |t|
     t.integer  "state_id"
