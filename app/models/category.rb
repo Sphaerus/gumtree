@@ -1,16 +1,6 @@
 class Category < ActiveRecord::Base
-  has_many :posters, as: :kind
-  has_many :subcategories, dependent: :destroy
-  accepts_nested_attributes_for :subcategories
-  
-  def self.with_subcategories
-    choices = []
-    self.all.each do |category|
-      choices << category
-      category.subcategories.each do |subcategory|
-        choices << subcategory
-      end  
-    end  
-    choices
-  end  
+  has_many :posters
+  has_many :fields, foreign_key: :category_id, dependent: :destroy
+  has_many :subcategories, class_name: "Category", foreign_key: "category_id", dependent: :destroy 
+  belongs_to :parent_category, class_name: "Category"
 end

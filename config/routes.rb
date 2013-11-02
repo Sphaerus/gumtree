@@ -3,7 +3,9 @@ Gumtree::Application.routes.draw do
   devise_for :users
   root "application#index"
   
-  resources :categories
+  resources :categories do
+    resources :fields
+  end  
     
   resources :posters
 

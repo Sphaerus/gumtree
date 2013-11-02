@@ -1,4 +1,21 @@
 %h1= "Category: #{@category.name}"
-
-- @category.subcategories.each do |subcategory|
-	%li= subcategory.name
+= link_to "Edit", edit_category_path(@category)
+	
+%h2= "Fields"
+%table
+	%th= "Type"
+	%th= "Description"
+	%th
+	
+	- @category.fields.each do |field|
+		%tr
+			%td= field.kind
+			%td= field.description
+			%td= link_to "Delete", category_field_path(@category,field), method: :delete
+	
+%h2= "Add field"	
+	
+= simple_form_for @category.fields.build, url: category_fields_path(@category) do |f|
+	= f.input :kind, collection: Field::FIELD_TYPES, include_blank: "Choose field type", label: false
+	= f.input :description, label: "Field's description"
+	= f.submit "Add field"

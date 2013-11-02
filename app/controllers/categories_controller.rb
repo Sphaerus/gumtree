@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :destroy]
+  before_action :set_category, only: [:show, :destroy, :edit, :update]
   
   def index
     @categories = Category.all
@@ -10,15 +10,13 @@ class CategoriesController < ApplicationController
   
   def new
     @category = Category.new    
-    @category_form = CategoryForm.new(@category)
   end
   
   def create
-    @category = Category.new
-    @category_form = CategoryForm.new(@category, category_params)
+    @category = Category.new(category_params)
     
     respond_to do |format|
-      if @category_form.save
+      if @category.save
         format.html { redirect_to @category }
       else
         format.html { render action: "new" }
@@ -27,16 +25,11 @@ class CategoriesController < ApplicationController
   end
   
   def edit
-    @category = Category.find(params[:id])
-    @category_form = CategoryForm.new(@category)
   end
   
-  def update
-    @category = Category.find(params[:id])
-    @category_form = CategoryForm.new(@category)
-    
+  def update    
     respond_to do |format|
-      if @category_form.update_attributes(category_params)
+      if @category.update_attributes(category_params)
         format.html { redirect_to @category }
       else
         format.html { render new }
@@ -52,7 +45,7 @@ class CategoriesController < ApplicationController
   private
   
   def category_params
-    params.require(:category).permit(:name, subcategories_attributes: [:id, :name])
+    params.require(:category).permit(:name, :category_id)
   end  
   
   def set_category
