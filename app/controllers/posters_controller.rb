@@ -28,7 +28,6 @@ class PostersController < ApplicationController
   end  
   
   def update
-    
     respond_to do |format|
       if @poster.update_attributes(poster_params)
         format.html { redirect_to @poster }
@@ -39,14 +38,14 @@ class PostersController < ApplicationController
   end  
   
   def destroy
-    @poster.delete
+    @poster.destroy
     redirect_to posters_path
   end      
   
   private
   
   def poster_params
-    params.require(:poster).permit(:description, :title, :kind_id, :kind_type)
+    params.require(:poster).permit(:description, :title, :category_id)
   end  
   
   def set_poster
