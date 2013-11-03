@@ -1,5 +1,15 @@
 = simple_form_for @poster do |f|
+	= f.input :category_id, collection: Category.all, prompt: "Choose category"
 	= f.input :title
 	= f.input :description
-	= f.input :category_id, collection: Category.all, prompt: "Choose category"
+	= f.simple_fields_for :string_fields do |fsf|
+		= fsf.input :detail
+	= f.simple_fields_for :text_fields do |ftf|
+		= ftf.input :description
+	= f.simple_fields_for :integer_fields do |fif|
+		= fif.input :integer_number	
+	= f.simple_fields_for :float_fields do |fff|
+		= fff.input :float_number
+	= f.simple_fields_for	:date_fields do |fdf|
+		= fdf.input :date
 	= f.submit
