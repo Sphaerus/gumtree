@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  float_number: 1.5
+  poster_id: 
+
+two:
+  float_number: 1.5
+  poster_id: 

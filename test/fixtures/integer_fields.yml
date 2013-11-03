@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  integer_number: 1
+  poster_id: 
+
+two:
+  integer_number: 1
+  poster_id: 
