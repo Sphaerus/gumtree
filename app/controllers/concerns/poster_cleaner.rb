@@ -24,24 +24,24 @@ class PosterCleaner
     
     case field
     when DateField
-      if field.date.nil?
-        field.destroy
+      if @field.date.nil?
+        destroy_field
       end
     when StringField
-      if field.detail.blank?
-        field.delete
+      if @field.detail.blank?
+        destroy_field
       end
     when FloatField
-      if field.float_number.nil?
-        field.destroy
+      if @field.float_number.nil?
+        destroy_field
       end
     when IntegerField
-      if field.integer_number.nil?
-        field.destroy
+      if @field.integer_number.nil?
+        destroy_field
       end
     when TextField
-      if field.description.blank?
-        field.destroy
+      if @field.description.blank?
+        destroy_field
       end
     end                    
   end
