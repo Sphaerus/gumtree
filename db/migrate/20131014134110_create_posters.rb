@@ -1,7 +1,7 @@
 class CreatePosters < ActiveRecord::Migration
   def change
     create_table :posters do |t|
-      t.text :description
+      t.text :content
       t.references :user, index: true
       t.integer :range_id
       t.string :range_type

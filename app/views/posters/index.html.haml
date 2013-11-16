@@ -8,7 +8,7 @@
 	- @posters.each do |poster|
 		%tr
 			%td= link_to poster.title, poster_path(poster)
-			%td= poster.description
+			%td= poster.content
 			%td
 				= link_to "Edit", edit_poster_path(poster)
 				= link_to "Delete", poster_path(poster), method: :delete
