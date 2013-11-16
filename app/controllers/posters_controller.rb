@@ -25,11 +25,14 @@ class PostersController < ApplicationController
   end
   
   def edit
+    PosterCreator.new(@poster)
   end  
   
   def update
+    @cleaned_poster = PosterCleaner.new(@poster, poster_params)
+    
     respond_to do |format|
-      if @poster.update_attributes(poster_params)
+      if @cleaned_poster.save!
         format.html { redirect_to @poster }
       else
         format.html { render action: "new" }
@@ -45,7 +48,7 @@ class PostersController < ApplicationController
   private
   
   def poster_params
-    params.require(:poster).permit(:description, :title, :category_id)
+    params.require(:poster).permit(:content, :title, :category_id, string_fields_attributes: [:detail, :field_id, :id], float_fields_attributes: [:float_number, :field_id, :id], integer_fields_attributes: [:integer_number, :field_id, :id], text_fields_attributes: [:description, :field_id, :id], date_fields_attributes: [:date, :field_id, :id])
   end  
   
   def set_poster
