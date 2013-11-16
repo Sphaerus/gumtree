@@ -13,13 +13,7 @@ class Poster < ActiveRecord::Base
   accepts_nested_attributes_for :string_fields
   accepts_nested_attributes_for :date_fields
   
-  validates :description, presence: true
-  
-  def build_fields_based_on_category
-    category.fields.each do |field|
-      self.send("#{field.kind}_fields").build
-    end    
-  end  
+  validates :content, presence: true 
   
   def list_fields
     fields = []

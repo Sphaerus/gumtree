@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131103102842) do
+ActiveRecord::Schema.define(version: 20131112220140) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -33,8 +33,10 @@ ActiveRecord::Schema.define(version: 20131103102842) do
     t.integer  "poster_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "field_id"
   end
 
+  add_index "date_fields", ["field_id"], name: "index_date_fields_on_field_id", using: :btree
   add_index "date_fields", ["poster_id"], name: "index_date_fields_on_poster_id", using: :btree
 
   create_table "fields", force: true do |t|
@@ -50,8 +52,10 @@ ActiveRecord::Schema.define(version: 20131103102842) do
     t.integer  "poster_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "field_id"
   end
 
+  add_index "float_fields", ["field_id"], name: "index_float_fields_on_field_id", using: :btree
   add_index "float_fields", ["poster_id"], name: "index_float_fields_on_poster_id", using: :btree
 
   create_table "integer_fields", force: true do |t|
@@ -59,12 +63,14 @@ ActiveRecord::Schema.define(version: 20131103102842) do
     t.integer  "poster_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "field_id"
   end
 
+  add_index "integer_fields", ["field_id"], name: "index_integer_fields_on_field_id", using: :btree
   add_index "integer_fields", ["poster_id"], name: "index_integer_fields_on_poster_id", using: :btree
 
   create_table "posters", force: true do |t|
-    t.text     "description"
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "range_id"
     t.string   "range_type"
@@ -90,8 +96,10 @@ ActiveRecord::Schema.define(version: 20131103102842) do
     t.integer  "poster_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "field_id"
   end
 
+  add_index "string_fields", ["field_id"], name: "index_string_fields_on_field_id", using: :btree
   add_index "string_fields", ["poster_id"], name: "index_string_fields_on_poster_id", using: :btree
 
   create_table "text_fields", force: true do |t|
@@ -99,8 +107,10 @@ ActiveRecord::Schema.define(version: 20131103102842) do
     t.integer  "poster_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "field_id"
   end
 
+  add_index "text_fields", ["field_id"], name: "index_text_fields_on_field_id", using: :btree
   add_index "text_fields", ["poster_id"], name: "index_text_fields_on_poster_id", using: :btree
 
   create_table "towns", force: true do |t|
