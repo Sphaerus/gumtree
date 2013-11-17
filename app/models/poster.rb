@@ -18,13 +18,11 @@ class Poster < ActiveRecord::Base
   validates :content, presence: true 
   
   def list_fields
-    fields = []
-    self.text_fields.each { |field| fields << field }
-    self.string_fields.each { |field| fields << field }
-    self.integer_fields.each { |field| fields << field }
-    self.date_fields.each { |field| fields << field }
-    self.float_fields.each { |field| fields << field }
-    self.collection_fields.each { |field| fields << field }
-    fields
+    self.text_fields +
+    self.string_fields +
+    self.integer_fields +
+    self.date_fields +
+    self.float_fields +
+    self.collection_fields
   end  
 end

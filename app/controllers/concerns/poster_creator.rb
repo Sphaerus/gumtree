@@ -1,4 +1,4 @@
-class PosterCreator
+class PosterBuilder
   
   attr_accessor :poster
   
@@ -19,8 +19,6 @@ class PosterCreator
   end 
   
   def list_all_field_ids
-    @poster.list_fields.map do |field|
-      field.field_id
-    end  
+    @poster.list_fields.map(&:field_id) 
   end
 end

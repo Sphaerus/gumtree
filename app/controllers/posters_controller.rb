@@ -25,7 +25,7 @@ class PostersController < ApplicationController
   end
   
   def edit
-    PosterCreator.new(@poster)
+    PosterBuilder.new(@poster)
   end  
   
   def update
