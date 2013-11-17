@@ -48,7 +48,13 @@ class PostersController < ApplicationController
   private
   
   def poster_params
-    params.require(:poster).permit(:content, :title, :category_id, collection_fields_attributes: [:element, :field_id, :collection_id, :id], string_fields_attributes: [:detail, :field_id, :id], float_fields_attributes: [:float_number, :field_id, :id], integer_fields_attributes: [:integer_number, :field_id, :id], text_fields_attributes: [:description, :field_id, :id], date_fields_attributes: [:date, :field_id, :id])
+    params.require(:poster).permit(:content, :title, :category_id, :range_id, :range_type,
+     collection_fields_attributes: [:element, :field_id, :collection_id, :id],
+      string_fields_attributes: [:detail, :field_id, :id],
+       float_fields_attributes: [:float_number, :field_id, :id],
+        integer_fields_attributes: [:integer_number, :field_id, :id],
+         text_fields_attributes: [:description, :field_id, :id],
+          date_fields_attributes: [:date, :field_id, :id])
   end  
   
   def set_poster

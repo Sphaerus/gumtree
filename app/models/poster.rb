@@ -1,6 +1,7 @@
 class Poster < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
+  belongs_to :range, polymorphic: true
   has_many :text_fields
   has_many :string_fields
   has_many :integer_fields
@@ -16,6 +17,8 @@ class Poster < ActiveRecord::Base
   accepts_nested_attributes_for :collection_fields
   
   validates :content, presence: true 
+  validates :range_type, :range_id, presence: true
+  validates :category_id, presence: true
   
   def list_fields
     self.text_fields +
