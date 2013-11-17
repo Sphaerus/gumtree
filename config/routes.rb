@@ -5,7 +5,11 @@ Gumtree::Application.routes.draw do
   
   resources :categories do
     resources :fields
-  end  
+  end
+  resources :collections do
+    patch "add_to_collection" 
+    delete "remove_from_collection"
+  end
     
   resources :posters
 

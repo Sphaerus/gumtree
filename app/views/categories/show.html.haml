@@ -20,3 +20,9 @@
 	= f.input :kind, collection: Field::FIELD_TYPES, include_blank: "Choose field type", label: false
 	= f.input :description, label: "Field's description"
 	= f.submit "Add field"
+	
+= simple_form_for @category.fields.build, url: category_fields_path(@category) do |f|
+	= f.input :kind, as: :hidden, input_html: { value: "collection" }
+	= f.association :collection, collection: Collection.all
+	= f.input :description, label: "Field's description"
+	= f.submit "Add collection field"

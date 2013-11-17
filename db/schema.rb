@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112220140) do
+ActiveRecord::Schema.define(version: 20131116203835) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -21,6 +21,24 @@ ActiveRecord::Schema.define(version: 20131112220140) do
   end
 
   add_index "categories", ["category_id"], name: "index_categories_on_category_id", using: :btree
+
+  create_table "collection_fields", force: true do |t|
+    t.integer  "poster_id"
+    t.string   "element"
+    t.integer  "field_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "collection_fields", ["field_id"], name: "index_collection_fields_on_field_id", using: :btree
+  add_index "collection_fields", ["poster_id"], name: "index_collection_fields_on_poster_id", using: :btree
+
+  create_table "collections", force: true do |t|
+    t.text     "array"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "countries", force: true do |t|
     t.string   "name"
@@ -45,7 +63,10 @@ ActiveRecord::Schema.define(version: 20131112220140) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "collection_id"
   end
+
+  add_index "fields", ["collection_id"], name: "index_fields_on_collection_id", using: :btree
 
   create_table "float_fields", force: true do |t|
     t.float    "float_number"

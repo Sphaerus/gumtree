@@ -1,0 +1,14 @@
+%h1= "Collection: #{@collection.name}"
+%p= link_to "Edit", edit_collection_path(@collection)
+
+%table
+	%th= "Name"
+	%th
+	- @collection.array.each do |element|
+		%tr
+			%td= element
+			%td= link_to "Delete", collection_remove_from_collection_path(@collection, element: element), method: :delete
+	
+= simple_form_for @collection, url: collection_add_to_collection_path(@collection), method: :patch do |f|
+	= f.input :element, required: true
+	= f.submit

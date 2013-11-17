@@ -22,7 +22,7 @@ class PosterCleaner
   def check_if_empty_and_destroy(field)
     @field = field
     
-    case field
+    case @field
     when DateField
       if @field.date.nil?
         destroy_field
@@ -43,6 +43,10 @@ class PosterCleaner
       if @field.description.blank?
         destroy_field
       end
+    when CollectionField
+      if @field.element.blank?
+        destroy_field
+      end    
     end                    
   end
   

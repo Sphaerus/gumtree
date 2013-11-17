@@ -6,12 +6,14 @@ class Poster < ActiveRecord::Base
   has_many :integer_fields
   has_many :float_fields
   has_many :date_fields
+  has_many :collection_fields
     
   accepts_nested_attributes_for :float_fields
   accepts_nested_attributes_for :integer_fields
   accepts_nested_attributes_for :text_fields
   accepts_nested_attributes_for :string_fields
   accepts_nested_attributes_for :date_fields
+  accepts_nested_attributes_for :collection_fields
   
   validates :content, presence: true 
   
@@ -22,6 +24,7 @@ class Poster < ActiveRecord::Base
     self.integer_fields.each { |field| fields << field }
     self.date_fields.each { |field| fields << field }
     self.float_fields.each { |field| fields << field }
+    self.collection_fields.each { |field| fields << field }
     fields
   end  
 end

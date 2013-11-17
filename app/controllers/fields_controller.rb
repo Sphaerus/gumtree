@@ -22,7 +22,7 @@ class FieldsController < ApplicationController
   private
   
   def field_params
-    params.require(:field).permit(:kind, :description, :category_id)
+    params.require(:field).permit(:kind, :description, :category_id, :collection_id)
   end
   
   def set_category
