@@ -47,7 +47,7 @@ class CollectionsController < ApplicationController
   
   def remove_from_collection
     @collection = Collection.find(params[:collection_id])
-    @collection.remove_from_collection(params[:element])
+    @collection.remove_from_collection(params[:index])
     @collection.save!
     redirect_to @collection
   end

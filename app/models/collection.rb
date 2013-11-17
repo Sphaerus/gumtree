@@ -6,7 +6,8 @@ class Collection < ActiveRecord::Base
     array << element unless element.blank?
   end
   
-  def remove_from_collection(element)
-    array.delete(element)
+  def remove_from_collection(index)
+    index = index.to_i
+    array.delete_at(index)
   end
 end

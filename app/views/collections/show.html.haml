@@ -4,10 +4,10 @@
 %table
 	%th= "Name"
 	%th
-	- @collection.array.each do |element|
+	- @collection.array.each_with_index do |element, key|
 		%tr
 			%td= element
-			%td= link_to "Delete", collection_remove_from_collection_path(@collection, element: element), method: :delete
+			%td= link_to "Delete", collection_remove_from_collection_path(@collection, index: key), method: :delete
 	
 = simple_form_for @collection, url: collection_add_to_collection_path(@collection), method: :patch do |f|
 	= f.input :element, required: true
