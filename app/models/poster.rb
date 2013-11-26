@@ -1,4 +1,6 @@
 class Poster < ActiveRecord::Base
+  attr_writer :current_step
+  
   belongs_to :user
   belongs_to :category
   belongs_to :range, polymorphic: true
@@ -27,5 +29,30 @@ class Poster < ActiveRecord::Base
     self.date_fields +
     self.float_fields +
     self.collection_fields
+  end 
+  
+  def steps
+    %w(location category fields)
+  end 
+  
+  def current_step
+    @current_step || steps.first
+  end
+  
+  def next_step
+    self.current_step = steps[steps.index(current_step) + 1]
+  end
+  
+  def previous_step
+    self.current_step = steps[steps.index(current_step) - 1]
   end  
+  
+  def first_step?
+    current_step == steps.first
+  end  
+  
+  def last_step?
+    current_step == steps.last
+  end  
+  
 end

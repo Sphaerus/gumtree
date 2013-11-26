@@ -4,7 +4,7 @@ class PosterBuilder
   
   def initialize(poster)
     @poster = poster
-    build_fields_based_on_category
+    build_fields_based_on_category unless @poster.category.nil?
   end
   
   private

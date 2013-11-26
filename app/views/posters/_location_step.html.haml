@@ -1,0 +1,3 @@
+%h1= "Select your location"
+= f.input :range_id, collection: list_countries_and_children.map { |area| [area.name, area.id, { type: area.class, role: "range_id" }] }
+= f.input :range_type, as: :hidden, input_html: { data: { role: "type" } }

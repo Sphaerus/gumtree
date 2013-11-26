@@ -9,30 +9,48 @@ class PostersController < ApplicationController
   end  
   
   def new
-    @poster = Poster.new    
+    session[:poster_params] ||= {}
+    @poster = Poster.new(session[:poster_params])
+    @poster.current_step = session[:poster_step]
   end
   
   def create
-    @poster = Poster.new(poster_params)
-    
-    respond_to do |format|
-      if @poster.save
-        format.html { redirect_to @poster }
-      else
-        format.html { render action: "new" }
-      end 
-    end     
+    session[:poster_params].deep_merge!(poster_params) if poster_params
+    @poster = Poster.new(session[:poster_params])
+    @poster.current_step = session[:poster_step]
+    if params[:back_button]
+      @poster.previous_step
+    elsif @poster.last_step?
+      initialize_poster_cleaner
+      clean_of_wrong_category_fields
+      @cleaner.delete_empty_fields
+      @poster.save!  
+    else  
+      @poster.next_step
+      initialize_poster_builder
+      initialize_poster_cleaner
+      clean_of_wrong_category_fields
+    end
+    session[:poster_step] = @poster.current_step
+    if @poster.new_record?
+      render "new"
+    else
+      session[:poster_step] = session[:poster_params] = nil
+      flash[:notice] = "Poster successfully created!"
+      redirect_to @poster
+    end        
   end
   
   def edit
-    PosterBuilder.new(@poster)
+    initialize_poster_builder
   end  
   
   def update
-    @cleaned_poster = PosterCleaner.new(@poster, poster_params)
+    initialize_poster_cleaner
+    @cleaner.assign_attributes_and_delete_empty_fields(poster_params)
     
     respond_to do |format|
-      if @cleaned_poster.save!
+      if @cleaner.save!
         format.html { redirect_to @poster }
       else
         format.html { render action: "new" }
@@ -59,5 +77,17 @@ class PostersController < ApplicationController
   
   def set_poster
     @poster = Poster.find(params[:id])
+  end  
+  
+  def initialize_poster_cleaner
+    @cleaner = PosterCleaner.new(@poster)
+  end  
+  
+  def initialize_poster_builder
+    PosterBuilder.new(@poster)
+  end
+  
+  def clean_of_wrong_category_fields
+    @cleaner.clean_of_wrong_category_fields
   end  
 end  
