@@ -4,6 +4,7 @@ Gumtree::Application.routes.draw do
   root "application#index"
   
   resources :categories do
+    post "create_child"
     resources :fields
   end
   resources :collections do
