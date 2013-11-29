@@ -7,6 +7,12 @@ class CategoriesController < ApplicationController
   end  
   
   def show
+    @subcategories = @category.subcategories
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @subcategories }
+    end  
   end  
   
   def new
