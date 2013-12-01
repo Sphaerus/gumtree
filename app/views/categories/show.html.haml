@@ -8,8 +8,9 @@
 
 %h2= "Add subcategory"
 
-= simple_form_for @category.subcategories.build, url: category_create_child_path(@category) do |f|
+= simple_form_for @category.subcategories.build do |f|
 	= f.input :name
+	= f.input :category_id, as: :hidden, input_html: { value: @category.id }
 	= f.submit "Save subcategory"
 	
 %h2= "Fields"

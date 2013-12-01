@@ -31,18 +31,6 @@ class CategoriesController < ApplicationController
     end     
   end
   
-  def create_child
-    @child_category = @category.subcategories.build(category_params)
-    
-    respond_to do |format|
-      if @child_category.save!
-        format.html { redirect_to @child_category }
-      else
-        format.html { redirect_to @category }
-      end 
-    end
-  end
-  
   def edit
   end
   
@@ -70,8 +58,4 @@ class CategoriesController < ApplicationController
   def set_category
     @category = Category.find(params[:id])
   end  
-  
-  def set_parent_category
-    @category = Category.find(params[:category_id])
-  end
 end  
