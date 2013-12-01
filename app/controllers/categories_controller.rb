@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :destroy, :edit, :update]
-  before_action :set_parent_category, only: [:create_child]
   
   def index
     @categories = Category.without_parent
