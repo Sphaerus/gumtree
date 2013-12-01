@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
   before_action :set_parent_category, only: [:create_child]
   
   def index
-    @categories = Category.all
+    @categories = Category.without_parent
   end  
   
   def show
