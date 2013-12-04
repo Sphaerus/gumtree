@@ -1,4 +1,4 @@
-class CollectionsController < ApplicationController
+class Admin::CollectionsController < AdminController
   before_action :set_collection, only: [:edit, :update, :destroy, :show]
   
   def index
@@ -17,7 +17,7 @@ class CollectionsController < ApplicationController
     
     respond_to do |format|
       if @collection.save!
-        format.html { redirect_to @collection}
+        format.html { redirect_to [:admin, @collection]}
       else
         format.html { render action: "new"}  
       end  
@@ -30,7 +30,7 @@ class CollectionsController < ApplicationController
   def update    
     respond_to do |format|
       if @collection.update_attributes(collection_params)
-        format.html { redirect_to @collection }
+        format.html { redirect_to [:admin, @collection] }
       else
         format.html { render new }
       end 
@@ -42,19 +42,19 @@ class CollectionsController < ApplicationController
     @element = params[:collection][:element]
     @collection.add_to_collection(@element)
     @collection.save!
-    redirect_to @collection  
+    redirect_to [:admin, @collection]  
   end
   
   def remove_from_collection
     @collection = Collection.find(params[:collection_id])
     @collection.remove_from_collection(params[:index])
     @collection.save!
-    redirect_to @collection
+    redirect_to [:admin, @collection]
   end
   
   def destroy
     @collection.destroy
-    redirect_to collections_path
+    redirect_to admin_collections_path
   end
   
   private

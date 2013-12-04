@@ -1,4 +1,4 @@
-class FieldsController < ApplicationController
+class Admin::FieldsController < AdminController
   before_action :set_category, only: [:create, :destroy]
   before_action :set_field, only: [:destroy]
   
@@ -7,16 +7,16 @@ class FieldsController < ApplicationController
 
     respond_to do |format|
       if @field.save
-        format.html { redirect_to @category}
+        format.html { redirect_to [:admin, @category]}
       else
-        format.html { redirect_to @category}
+        format.html { redirect_to [:admin, @category]}
       end  
     end    
   end     
   
   def destroy
     @field.destroy
-    redirect_to @category
+    redirect_to [:admin, @category]
   end  
   
   private

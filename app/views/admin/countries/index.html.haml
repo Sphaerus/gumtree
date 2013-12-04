@@ -1,0 +1,15 @@
+%h1= "Countries"
+
+%table.table.table-striped
+	%th= "ID"
+	%th= "Name"
+	%th
+	
+	- @countries.each do |country|
+		%tr
+			%td= country.id
+			%td= link_to country.name, admin_country_path(country)
+			%td
+				= link_to "Edit", edit_admin_country_path(country)
+				= link_to "Delete", admin_country_path(country), method: :delete
+			

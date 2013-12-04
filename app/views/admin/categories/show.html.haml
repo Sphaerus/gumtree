@@ -1,14 +1,14 @@
 %h1= "Category: #{@category.name}"
-= link_to "Edit", edit_category_path(@category)
-= link_to "Delete", category_path(@category), method: :delete
+= link_to "Edit", edit_admin_category_path(@category)
+= link_to "Delete", admin_category_path(@category), method: :delete
 
 %h2= "Subcategories"
 - @category.subcategories.each do |subcategory|
-	%p= link_to subcategory.name, category_path(subcategory)
+	%p= link_to subcategory.name, admin_category_path(subcategory)
 
 %h2= "Add subcategory"
 
-= simple_form_for @category.subcategories.build do |f|
+= simple_form_for [:admin, @category.subcategories.build] do |f|
 	= f.input :name
 	= f.input :category_id, as: :hidden, input_html: { value: @category.id }
 	= f.submit "Save subcategory"
@@ -23,18 +23,18 @@
 		%tr
 			%td= field.kind
 			%td= field.description
-			%td= link_to "Delete", category_field_path(@category,field), method: :delete
+			%td= link_to "Delete", admin_category_field_path(@category,field), method: :delete
 	
 %h2= "Add custom field"	
 	
-= simple_form_for @category.fields.build, url: category_fields_path(@category) do |f|
+= simple_form_for @category.fields.build, url: admin_category_fields_path(@category) do |f|
 	= f.input :kind, collection: Field::FIELD_TYPES, include_blank: "Choose field type", label: false
 	= f.input :description, label: "Field's description"
 	= f.submit "Add field"
 	
 %h2= "Add collection field"	
 	
-= simple_form_for @category.fields.build, url: category_fields_path(@category) do |f|
+= simple_form_for @category.fields.build, url: admin_category_fields_path(@category) do |f|
 	= f.input :kind, as: :hidden, input_html: { value: "collection" }
 	= f.association :collection, collection: Collection.all
 	= f.input :description, label: "Field's description"

@@ -1,0 +1,13 @@
+%h1 Categories
+= link_to "New", new_admin_category_path
+
+%table
+	%th Name
+	%th
+	
+	- @categories.each do |category|
+		%tr
+			%td= link_to category.name, admin_category_path(category)
+			%td= link_to "Delete", admin_category_path(category), method: :delete
+			%td= link_to "Edit", edit_admin_category_path(category)
+			

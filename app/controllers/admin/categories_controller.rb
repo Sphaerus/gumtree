@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < AdminController
   before_action :set_category, only: [:show, :destroy, :edit, :update]
   
   def index
@@ -23,7 +23,7 @@ class CategoriesController < ApplicationController
     
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category }
+        format.html { redirect_to [:admin, @category] }
       else
         format.html { render action: "new" }
       end 
@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
   def update    
     respond_to do |format|
       if @category.update_attributes(category_params)
-        format.html { redirect_to @category }
+        format.html { redirect_to [:admin, @category] }
       else
         format.html { render action: "edit" }
       end 
@@ -45,7 +45,7 @@ class CategoriesController < ApplicationController
   
   def destroy
     @category.destroy
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end      
   
   private
