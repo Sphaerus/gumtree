@@ -22,6 +22,14 @@ class Poster < ActiveRecord::Base
   validates :range_type, :range_id, presence: true
   validates :category_id, presence: true
   
+  def self.by_category(category = nil)
+    if category.nil?
+      where("category_id IN (?)", Category.all_childless_categories)
+    else  
+      where("category_id IN (?)", category.subcategories_with_children)
+    end  
+  end
+  
   def list_fields
     self.text_fields +
     self.string_fields +
