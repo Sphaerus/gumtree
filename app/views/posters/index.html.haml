@@ -1,10 +1,9 @@
 %h1	Ogłoszenia
 
-%table
+%table.table.table-striped
 	%th= "Title"
 	%th= "Description"
 	%th 
-	
 	- @posters.each do |poster|
 		%tr
 			%td= link_to poster.title, poster_path(poster)
