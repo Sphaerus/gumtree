@@ -1,5 +1,4 @@
 class PosterCleaner
-  attr_accessor :poster, :field
   
   def initialize(poster)
     @poster = poster

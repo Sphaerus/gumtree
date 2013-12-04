@@ -1,7 +1,5 @@
 class PosterBuilder
-  
-  attr_accessor :poster
-  
+    
   def initialize(poster)
     @poster = poster
     build_fields_based_on_category unless @poster.category.nil?
