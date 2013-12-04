@@ -1,2 +1,2 @@
 %h1= "Select category"
-= f.input :category_id, collection: Category.all, include_blank: "Choose category", label: false
+= f.input :category_id, collection: Category.all_childless_categories, include_blank: "Choose category", label: false
