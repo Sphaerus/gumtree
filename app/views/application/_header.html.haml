@@ -1,4 +1,5 @@
 %h1 Awesome Gumtree Clone
+%p= link_to "Add new poster", new_poster_path
 
 = simple_form_for :query, url: search_path, method: :get do |f|
 	= f.input :category_id, collection: Category.all, prompt: "All categories", required: false
