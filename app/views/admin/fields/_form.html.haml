@@ -1,0 +1,10 @@
+= simple_form_for [:admin, @category, @field] do |f|
+	= f.input :kind, collection: Field::FIELD_TYPES, include_blank: "Choose field type", label: false
+	= f.input :description, label: "Field's description"
+	= f.submit "Save field"
+	
+= simple_form_for [:admin, @category, @field] do |f|	
+	= f.input :kind, as: :hidden, input_html: { value: "collection" }
+	= f.association :collection, collection: Collection.all
+	= f.input :description, label: "Field's description"
+	= f.submit "Add collection field"
