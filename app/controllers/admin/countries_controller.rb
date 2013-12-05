@@ -1,12 +1,11 @@
 class Admin::CountriesController < AdminController
-  before_action :set_country, only: [:show, :edit, :update]
+  before_action :set_country, only: [:show, :edit, :update, :destroy]
   
   def index
     @countries = Country.all
   end
   
   def show
-    @country = Country.find(params[:id])
   end  
   
   def edit
@@ -23,7 +22,24 @@ class Admin::CountriesController < AdminController
   end
   
   def new
+    @country = Country.new
+  end
+  
+  def create
+    @country = Country.new(country_params)
     
+    respond_to do |format|
+      if @country.save!
+        format.html { redirect_to [:admin, @country]} 
+      else
+        format.html { render action: "new"}
+      end  
+    end   
+  end
+  
+  def destroy
+    @country.destroy
+    redirect_to admin_countries_path
   end
   
   private
