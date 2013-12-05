@@ -1,4 +1,5 @@
-%h1= "#{@country.name}: provinces"
+%h1= title "Provinces"
+%p= link_to "Add new province", new_admin_country_province_path(@country)
 
 %table.table.table-striped
 	%th= "Name"
