@@ -1,4 +1,4 @@
-class State < ActiveRecord::Base
+class Province < ActiveRecord::Base
   belongs_to :country
   has_many :posters, as: :range
   has_many :towns

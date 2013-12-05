@@ -1,3 +1,4 @@
 %h1= "Country: #{@country.name}"
+%p= link_to "Provinces", admin_country_provinces_path(@country)
 
 = link_to "Edit", edit_admin_country_path(@country)

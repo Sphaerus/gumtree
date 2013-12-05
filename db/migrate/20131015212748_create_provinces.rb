@@ -1,6 +1,6 @@
-class CreateStates < ActiveRecord::Migration
+class CreateProvinces < ActiveRecord::Migration
   def change
-    create_table :states do |t|
+    create_table :provinces do |t|
       t.references :country, index: true
       t.string :name
 

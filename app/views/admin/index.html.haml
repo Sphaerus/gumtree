@@ -1,0 +1,9 @@
+%h1= "#{@country.name}: provinces"
+
+%table.table.table-striped
+	%th= "Name"
+	%th
+	- @provinces.each do |provinces|
+		%tr
+			%td= province.name
+			%td

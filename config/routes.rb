@@ -5,7 +5,7 @@ Gumtree::Application.routes.draw do
   
   namespace :admin do
     resources :countries do
-      resources :states do
+      resources :provinces do
         resources :towns
       end
     end 

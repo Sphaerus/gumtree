@@ -103,14 +103,14 @@ ActiveRecord::Schema.define(version: 20131116203835) do
 
   add_index "posters", ["user_id"], name: "index_posters_on_user_id", using: :btree
 
-  create_table "states", force: true do |t|
+  create_table "provinces", force: true do |t|
     t.integer  "country_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "states", ["country_id"], name: "index_states_on_country_id", using: :btree
+  add_index "provinces", ["country_id"], name: "index_provinces_on_country_id", using: :btree
 
   create_table "string_fields", force: true do |t|
     t.string   "detail"
