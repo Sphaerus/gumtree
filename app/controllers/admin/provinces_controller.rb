@@ -1,5 +1,5 @@
 class Admin::ProvincesController < AdminController
-  before_action :set_country, only: [:index]
+  before_action :set_country, only: [:index, :new, :create, :update, :show, :edit]
   before_action :set_province, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -7,15 +7,15 @@ class Admin::ProvincesController < AdminController
   end
   
   def new
-    @province = Province.new
+    @province = @country.provinces.build
   end
   
   def create
-    @province = Province.new(province_params)
+    @province = @country.provinces.build(province_params)
     
     respond_to do |format|
       if @province.save!
-        format.html { redirect_to @province}
+        format.html { redirect_to [:admin, @country, @province]}
       else
         format.html { render action: "new" }
       end
@@ -26,6 +26,21 @@ class Admin::ProvincesController < AdminController
   end
   
   def edit
+  end
+  
+  def update
+    respond_to do |format|
+      if @province.update_attributes(province_params)
+        format.html { redirect_to [:admin, @country, @province] }
+      else
+        format.html { render action: "edit"} 
+      end
+    end     
+  end
+  
+  def destroy
+    @province.destroy
+    redirect_to [:admin, @country, :provinces]
   end
   
   private
