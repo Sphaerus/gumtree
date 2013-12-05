@@ -4,7 +4,7 @@
 %table.table.table-striped
 	%th= "Name"
 	%th
-	- @provinces.each do |provinces|
+	- @provinces.each do |province|
 		%tr
-			%td= province.name
+			%td= link_to province.name, admin_country_province_path(@country, province)
 			%td
