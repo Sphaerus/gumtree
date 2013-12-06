@@ -1,10 +1,6 @@
 class Admin::ProvincesController < AdminController
-  before_action :set_country, only: [:index, :new, :create, :update, :show, :edit]
+  before_action :set_country
   before_action :set_province, only: [:show, :edit, :update, :destroy]
-  
-  def index
-    @provinces = @country.provinces
-  end
   
   def new
     @province = @country.provinces.build
@@ -40,7 +36,7 @@ class Admin::ProvincesController < AdminController
   
   def destroy
     @province.destroy
-    redirect_to [:admin, @country, :provinces]
+    redirect_to [:admin, @country]
   end
   
   private
