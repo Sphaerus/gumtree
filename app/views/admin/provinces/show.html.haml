@@ -1,2 +1,14 @@
 %h1= title "Province: #{@province.name}" 
-%p= link_to "Edit", edit_admin_country_province_path(@country, @province)
+
+%h2= "Towns"
+%p= link_to "Add new town", new_admin_country_province_town_path(@country, @province)
+
+%table.table.table-striped
+	%th= "Name"
+	%th
+	- @province.towns.each do |town|
+		%tr
+			%td= link_to town.name, admin_country_province_town_path(@country, @province, town)
+			%td
+				= link_to "Edit", edit_admin_country_province_town_path(@country, @province, town)
+				= link_to "Delete", admin_country_province_town_path(@country, @province, town), method: :delete
