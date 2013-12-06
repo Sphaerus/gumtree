@@ -39,7 +39,7 @@ class Admin::CountriesController < AdminController
   
   def destroy
     @country.destroy
-    redirect_to admin_countries_path
+    redirect_to [:admin, :countries]
   end
   
   private
