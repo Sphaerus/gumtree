@@ -135,13 +135,13 @@ ActiveRecord::Schema.define(version: 20131116203835) do
   add_index "text_fields", ["poster_id"], name: "index_text_fields_on_poster_id", using: :btree
 
   create_table "towns", force: true do |t|
-    t.integer  "state_id"
+    t.integer  "province_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "towns", ["state_id"], name: "index_towns_on_state_id", using: :btree
+  add_index "towns", ["province_id"], name: "index_towns_on_province_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
