@@ -1,9 +1,12 @@
 class Admin::ProvincesController < AdminController
   before_action :set_country
   before_action :set_province, only: [:show, :edit, :update, :destroy]
+  before_action :set_breadcrumbs
+  before_action :add_province_breadcrumb, only: [:show, :edit]
   
   def new
     @province = @country.provinces.build
+    add_breadcrumb "New"
   end
   
   def create
@@ -22,6 +25,7 @@ class Admin::ProvincesController < AdminController
   end
   
   def edit
+    add_breadcrumb "Edit"
   end
   
   def update
@@ -53,4 +57,13 @@ class Admin::ProvincesController < AdminController
     params.require(:province).permit(:name, :country_id)
   end
   
+  def set_breadcrumbs
+    add_breadcrumb "Countries", [:admin, :countries]
+    add_breadcrumb @country.name, [:admin, @country]
+    add_breadcrumb "Provinces"
+  end
+  
+  def add_province_breadcrumb
+    add_breadcrumb @province.name
+  end
 end

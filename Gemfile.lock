@@ -36,6 +36,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    breadcrumbs_on_rails (2.3.0)
     builder (3.1.4)
     coderay (1.1.0)
     coffee-rails (4.0.0)
@@ -161,6 +162,7 @@ DEPENDENCIES
   anjlab-bootstrap-rails (~> 3.0.0.3)
   better_errors
   binding_of_caller
+  breadcrumbs_on_rails
   coffee-rails (~> 4.0.0)
   devise
   haml-rails

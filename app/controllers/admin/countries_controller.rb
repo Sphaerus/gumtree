@@ -1,5 +1,7 @@
 class Admin::CountriesController < AdminController
   before_action :set_country, only: [:show, :edit, :update, :destroy]
+  before_action :set_countries_breadcrumbs
+  before_action :set_country_breadcrumbs, except: [:new, :index]
   
   def index
     @countries = Country.all
@@ -9,6 +11,7 @@ class Admin::CountriesController < AdminController
   end  
   
   def edit
+    add_breadcrumb "Edit"
   end
   
   def update
@@ -23,6 +26,7 @@ class Admin::CountriesController < AdminController
   
   def new
     @country = Country.new
+    add_breadcrumb "New"
   end
   
   def create
@@ -50,5 +54,13 @@ class Admin::CountriesController < AdminController
   
   def set_country
     @country = Country.find(params[:id])
+  end
+  
+  def set_countries_breadcrumbs
+    add_breadcrumb "Countries", admin_countries_path
+  end
+  
+  def set_country_breadcrumbs
+    add_breadcrumb @country.name
   end
 end

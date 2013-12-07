@@ -2,12 +2,15 @@ class Admin::TownsController < AdminController
   before_action :set_province
   before_action :set_country
   before_action :set_town, only: [:show, :edit, :update, :destroy]
+  before_action :set_towns_breadcrumbs
+  before_action :add_town_breadcrumb, only: [:show, :edit]
   
   def show
   end
   
   def new
     @town = @province.towns.build
+    add_breadcrumb "New"
   end
   
   def create
@@ -23,6 +26,7 @@ class Admin::TownsController < AdminController
   end
   
   def edit
+    add_breadcrumb "Edit"
   end
   
   def update
@@ -56,5 +60,17 @@ class Admin::TownsController < AdminController
   
   def town_params
     params.require(:town).permit(:province_id, :name)
+  end
+  
+  def set_towns_breadcrumbs
+    add_breadcrumb "Countries", [:admin, :countries]
+    add_breadcrumb @country.name, [:admin, @country]
+    add_breadcrumb "Provinces"
+    add_breadcrumb @province.name, [:admin, @country, @province]
+    add_breadcrumb "Towns"
+  end
+  
+  def add_town_breadcrumb
+    add_breadcrumb @town.name
   end
 end

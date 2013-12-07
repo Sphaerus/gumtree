@@ -3,6 +3,7 @@
 %h2= "Towns"
 %p= link_to "Add new town", new_admin_country_province_town_path(@country, @province)
 
+= render_breadcrumbs
 %table.table.table-striped
 	%th= "Name"
 	%th

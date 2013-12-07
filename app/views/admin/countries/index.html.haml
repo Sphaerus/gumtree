@@ -1,6 +1,8 @@
 %h1= title "Countries"
 %p= link_to "Add new country", new_admin_country_path
 
+= render_breadcrumbs
+
 %table.table.table-striped
 	%th= "ID"
 	%th= "Name"

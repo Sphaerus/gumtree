@@ -51,6 +51,9 @@ gem "binding_of_caller"
 gem "haml-rails"
 gem 'anjlab-bootstrap-rails', '~> 3.0.0.3', :require => 'bootstrap-rails'
 
+#BreadCrumbs
+gem "breadcrumbs_on_rails"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
