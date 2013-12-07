@@ -2,7 +2,7 @@ class Admin::TownsController < AdminController
   before_action :set_province
   before_action :set_country
   before_action :set_town, only: [:show, :edit, :update, :destroy]
-  before_action :set_towns_breadcrumbs
+  before_action :set_towns_breadcrumbs, except: [:create, :update, :destroy]
   before_action :add_town_breadcrumb, only: [:show, :edit]
   
   def show

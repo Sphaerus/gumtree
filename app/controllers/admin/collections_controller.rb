@@ -1,15 +1,19 @@
 class Admin::CollectionsController < AdminController
   before_action :set_collection, only: [:edit, :update, :destroy, :show]
+  before_action :set_collections_breadcrumb, except: [:update, :create, :destroy, :add_to_collection, :remove_from_collection]
+  before_action :add_collection_breadcrumb, only: :edit
   
   def index
     @collections = Collection.all
   end  
   
   def show
+    add_breadcrumb @collection.name
   end
   
   def new
     @collection = Collection.new
+    add_breadcrumb "New"
   end
   
   def create
@@ -25,6 +29,7 @@ class Admin::CollectionsController < AdminController
   end
   
   def edit
+    add_breadcrumb "Edit"
   end
   
   def update    
@@ -66,4 +71,12 @@ class Admin::CollectionsController < AdminController
   def collection_params
     params.require(:collection).permit(:name)
   end    
+  
+  def set_collections_breadcrumb
+    add_breadcrumb "Collections", admin_collections_path
+  end
+  
+  def add_collection_breadcrumb
+    add_breadcrumb @collection.name
+  end
 end
