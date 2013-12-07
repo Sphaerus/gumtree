@@ -1,8 +1,10 @@
 class Admin::CategoriesController < AdminController
   before_action :set_category, only: [:show, :destroy, :edit, :update]
+  before_action :set_categories_breadcrumbs, only: [:show, :edit]
   
   def index
     @categories = Category.without_parent
+    add_breadcrumb "Categories"
   end  
   
   def show
@@ -16,6 +18,7 @@ class Admin::CategoriesController < AdminController
   
   def new
     @category = Category.new    
+    add_breadcrumb "New"
   end
   
   def create
@@ -31,6 +34,7 @@ class Admin::CategoriesController < AdminController
   end
   
   def edit
+    add_breadcrumb "Edit"
   end
   
   def update    
@@ -57,4 +61,9 @@ class Admin::CategoriesController < AdminController
   def set_category
     @category = Category.find(params[:id])
   end  
+  
+  def set_categories_breadcrumbs
+    add_breadcrumb "Categories", admin_categories_path
+    add_breadcrumb @category.name
+  end
 end  

@@ -1,13 +1,16 @@
 %h1= title "Categories"
-= link_to "New", new_admin_category_path
+%p= link_to "New", new_admin_category_path
 
-%table
+= render_breadcrumbs
+
+%table.table.table-striped
 	%th Name
 	%th
 	
 	- @categories.each do |category|
 		%tr
 			%td= link_to category.name, admin_category_path(category)
-			%td= link_to "Delete", admin_category_path(category), method: :delete
-			%td= link_to "Edit", edit_admin_category_path(category)
+			%td
+				= link_to "Delete", admin_category_path(category), method: :delete
+				= link_to "Edit", edit_admin_category_path(category)
 			
