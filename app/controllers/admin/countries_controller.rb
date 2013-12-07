@@ -1,7 +1,7 @@
 class Admin::CountriesController < AdminController
   before_action :set_country, only: [:show, :edit, :update, :destroy]
-  before_action :set_countries_breadcrumbs
-  before_action :set_country_breadcrumbs, except: [:new, :index]
+  before_action :set_countries_breadcrumbs, except: [:create, :update, :destroy]
+  before_action :set_country_breadcrumbs, except: [:new, :index, :create, :update, :destroy]
   
   def index
     @countries = Country.all

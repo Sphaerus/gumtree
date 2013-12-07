@@ -1,7 +1,7 @@
 class Admin::ProvincesController < AdminController
   before_action :set_country
   before_action :set_province, only: [:show, :edit, :update, :destroy]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, except: [:create, :update, :destroy]
   before_action :add_province_breadcrumb, only: [:show, :edit]
   
   def new
